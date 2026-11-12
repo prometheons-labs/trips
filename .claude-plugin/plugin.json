@@ -7,7 +7,7 @@
     "name": "vanRaco"
   },
   "license": "MIT",
-  "repository": "https://github.com/vanRaco/trips",
+  "repository": "https://github.com/prometheons-labs/trips",
   "keywords": ["sessions", "journal", "desktop", "pane"],
   "userConfig": {
     "actOnOtherSessions": {

@@ -37,21 +37,21 @@ It also keeps a small journal for you. The journal writes one line each time you
 From a shell:
 
 ```bash
-claude plugin install trips --marketplace vanRaco/trips
+claude plugin install trips --marketplace prometheons-labs/trips
 ```
 
 At the prompt of a terminal session:
 
 ```
-/plugin install trips --marketplace vanRaco/trips
+/plugin install trips --marketplace prometheons-labs/trips
 ```
 
-Answer `y` to add the marketplace, then pick a scope (user scope loads it in every session). The marketplace lives in the GitHub repo `vanRaco/trips` and is named `prometheons`, so the mod shows up as `trips@prometheons`.
+Answer `y` to add the marketplace, then pick a scope (user scope loads it in every session). The marketplace lives in the GitHub repo `prometheons-labs/trips` and is named `prometheons`, so the mod shows up as `trips@prometheons`.
 
 **In the desktop app**, where `/plugin` does not run:
 
 1. Click **+** next to the prompt box, then **Plugins**.
-2. Click **Add marketplace** and enter `vanRaco/trips`.
+2. Click **Add marketplace** and enter `prometheons-labs/trips`.
 3. Click **Add plugin**.
 
 A mod installed from a terminal at the user scope loads in desktop sessions too.
@@ -61,7 +61,7 @@ A mod installed from a terminal at the user scope loads in desktop sessions too.
 The journal fills itself from now on, one entry per session each hour you work. To fill it for the days before you installed Trips, run setup once. Install and set up in one line:
 
 ```bash
-claude plugin install trips --marketplace vanRaco/trips && claude -p "/trips setup 7d"
+claude plugin install trips --marketplace prometheons-labs/trips && claude -p "/trips setup 7d"
 ```
 
 Pick the range that suits you:
@@ -90,8 +90,8 @@ The Trips pane needs no setup. It reads the session records directly, back 30 da
 Paste this into a Claude Code terminal session:
 
 ```
-Install the Claude Code mod "trips" from the GitHub marketplace vanRaco/trips
-with `claude plugin install trips --marketplace vanRaco/trips` (user scope).
+Install the Claude Code mod "trips" from the GitHub marketplace prometheons-labs/trips
+with `claude plugin install trips --marketplace prometheons-labs/trips` (user scope).
 Then ask me which journal range I want: 1d, 7d, 30d or fresh. Tell me that
 7d makes up to about 16 model calls on my own Claude login and fresh makes
 none. Run `claude -p "/trips setup <my choice>"` and show me its summary.
