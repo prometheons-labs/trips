@@ -1,0 +1,26 @@
+{
+  "name": "trips",
+  "version": "1.0.0",
+  "description": "A docked Trips pane for your desktop Claude Code sessions (who waits on you, the last 24 hours, older trips with search), plus a local interstitial journal: one line per task switch, what was done and what comes next, with day closes and week, month and year summaries.",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "vanRaco"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/vanRaco/trips",
+  "keywords": ["sessions", "journal", "desktop", "pane"],
+  "userConfig": {
+    "actOnOtherSessions": {
+      "type": "boolean",
+      "title": "Act on other sessions",
+      "description": "Show Reply and Done on sessions that wait on you, so you can answer or clear them from the Trips pane. Off: Trips only reads and opens sessions.",
+      "default": false
+    },
+    "journalDir": {
+      "type": "string",
+      "title": "Journal folder",
+      "description": "Where the journal keeps its files. A leading ~ is your home folder.",
+      "default": "~/.claude/trips-journal"
+    }
+  }
+}

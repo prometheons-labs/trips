@@ -1,0 +1,6 @@
+{
+  "name": "trips",
+  "owner": { "name": "vanRaco" },
+  "description": "Trips: a docked pane for your Claude Code desktop sessions and a local interstitial journal.",
+  "plugins": [{ "name": "trips", "source": "./" }]
+}
