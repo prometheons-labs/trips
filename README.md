@@ -1,23 +1,38 @@
-# Trips
+<p align="center">
+  <img src="assets/banner.svg" width="100%" alt="Trips. Every chat is a trip. Find your way back.">
+</p>
 
-A Claude Code mod for people who run many sessions at once.
+<p align="center">
+  <b>A Claude Code mod for people who run many sessions at once.</b><br>
+  <code>trips@prometheons</code> · MIT · built and tested on Claude Code 2.1.321
+</p>
 
-Every chat is a trip. Trips gives you a docked pane that shows which trips wait on you, what each one asks, and where every other trip stands. It also keeps a small journal for you. The journal writes one line each time you switch tasks: what you got done, and what comes next. At the end of each day it writes a short close, and it sums up each week, month and year.
+<p align="center">
+  <img src="assets/demo.gif" width="720" alt="The Trips pane with fictional data: the Platform, the rail of the last 24 hours, the Sidings and the Depot, then a trip parked in the Depot.">
+</p>
 
-## What you get
+Every chat is a trip. Trips gives you a docked pane that shows which trips wait on you, what each one asks, and where every other trip stands.
+
+It also keeps a small journal for you. The journal writes one line each time you switch tasks: what you got done, and what comes next. At the end of each day it writes a short close, and it sums up each week, month and year.
+
+## <img src="assets/glyph-get.svg" width="24" height="24" alt=""> What you get
+
+<p align="center">
+  <img src="assets/what-you-get.svg" width="100%" alt="Three cards: the Trips pane, the pill above the prompt, and the journal card. Illustrative.">
+</p>
 
 - **The Trips pane.** It docks beside the transcript in the desktop app. Sessions that wait on you sit on the Platform at the top, with their ask. Below them runs the rail of the last 24 hours, newest first, with signal lamps, sidebar group colours, branch and PR chips. Older trips sit in the Sidings (1 to 7 days) and the Depot (over 7 days or archived), with search. Click a trip to open it.
 - **The pill above the prompt.** A tram mark, the count of trips that wait on you, and an eye that opens the pane.
 - **The journal card.** At the top of the pane: today's newest entries, each with the time, a short label, what was done and the next step. Timeline lists all of today. Journal opens a Day, Week, Month and Year browser.
 
-## Requirements
+### Requirements
 
 - A Claude Code build with mods support (function hooks). It was built and tested on Claude Code 2.1.321.
 - The pane and the pill draw in the Claude Code desktop app. A terminal session draws a plain text list.
 - macOS for the pane's data. The pane reads the desktop app's session records under `~/Library/Application Support/Claude/`, which is a macOS path. The journal backfill reads the transcripts under `~/.claude/projects/`, which every platform has.
 - `python3` on your `PATH`. The scanner and the journal store are small Python scripts that the mod runs.
 
-## Install
+## <img src="assets/glyph-install.svg" width="24" height="24" alt=""> Install
 
 From a shell:
 
@@ -31,11 +46,17 @@ At the prompt of a terminal session:
 /plugin install trips --marketplace vanRaco/trips
 ```
 
-Answer `y` to add the marketplace, then pick a scope (user scope loads it in every session).
+Answer `y` to add the marketplace, then pick a scope (user scope loads it in every session). The marketplace lives in the GitHub repo `vanRaco/trips` and is named `prometheons`, so the mod shows up as `trips@prometheons`.
 
-In the desktop app, where `/plugin` does not run: click **+** next to the prompt box, then **Plugins**, **Add marketplace** with `vanRaco/trips`, then **Add plugin**. A mod installed from a terminal at the user scope loads in desktop sessions too.
+**In the desktop app**, where `/plugin` does not run:
 
-## Set up the journal
+1. Click **+** next to the prompt box, then **Plugins**.
+2. Click **Add marketplace** and enter `vanRaco/trips`.
+3. Click **Add plugin**.
+
+A mod installed from a terminal at the user scope loads in desktop sessions too.
+
+## <img src="assets/glyph-setup.svg" width="24" height="24" alt=""> Set up the journal
 
 The journal fills itself from now on, one entry per session each hour you work. To fill it for the days before you installed Trips, run setup once. Install and set up in one line:
 
@@ -45,6 +66,10 @@ claude plugin install trips --marketplace vanRaco/trips && claude -p "/trips set
 
 Pick the range that suits you:
 
+<p align="center">
+  <img src="assets/setup-ranges.svg" width="100%" alt="Four range cards: 1d, 7d (suggested), 30d and fresh, each with a dot meter of its model calls.">
+</p>
+
 | Range | What it does | Model calls, about |
 |---|---|---|
 | `1d` | Yesterday only | 2 |
@@ -52,13 +77,15 @@ Pick the range that suits you:
 | `30d` | The last 30 days | up to 60, plus the week and month summaries that came due |
 | `fresh` | Start from now, write no past entries | none |
 
-Any `Nd` from `1d` to `30d` works. Setup never writes today: the hourly journal does that. It skips every day the journal already holds, so a rerun writes nothing new and makes no model calls. It prints a short summary: days written, quiet days, entries, model calls and fallbacks.
-
-You can also type `/trips setup 7d` at the prompt of any session where Trips is loaded.
+- Any `Nd` from `1d` to `30d` works.
+- Setup never writes today: the hourly journal does that.
+- It skips every day the journal already holds, so a rerun writes nothing new and makes no model calls.
+- It prints a short summary: days written, quiet days, entries, model calls and fallbacks.
+- You can also type `/trips setup 7d` at the prompt of any session where Trips is loaded.
 
 The Trips pane needs no setup. It reads the session records directly, back 30 days.
 
-## Set it up with Claude
+### Set it up with Claude
 
 Paste this into a Claude Code terminal session:
 
@@ -70,9 +97,13 @@ Then ask me which journal range I want: 1d, 7d, 30d or fresh. Tell me that
 none. Run `claude -p "/trips setup <my choice>"` and show me its summary.
 ```
 
-## Privacy
+## <img src="assets/glyph-privacy.svg" width="24" height="24" alt=""> Privacy
 
 Everything runs on your machine.
+
+<p align="center">
+  <img src="assets/privacy.svg" width="100%" alt="Three cards: what Trips reads (read only), what it writes, and which model calls it makes.">
+</p>
 
 - **What it reads, read only.** The desktop app's session records and sidebar groups under `~/Library/Application Support/Claude/` (`claude-code-sessions/` and `claude_desktop_config.json`), and the transcripts under `~/.claude/projects/*/*.jsonl`. Trips never writes to any file of the app or to a transcript.
 - **What it writes.** The journal folder (`~/.claude/trips-journal/` by default, see `journalDir` below), a scan cache in your temporary folder (`trips-scan-cache-v1.json`), and the mod's own store inside Claude Code (the pane's filter, park and Done marks).
@@ -80,7 +111,7 @@ Everything runs on your machine.
 - **Nothing else leaves the machine.** No telemetry, no other network calls.
 - **Acting on other sessions is off by default.** With `actOnOtherSessions` off, Trips only reads and opens sessions.
 
-## Settings
+## <img src="assets/glyph-settings.svg" width="24" height="24" alt=""> Settings
 
 Set these in `/config` (the `trips` rows), or in `~/.claude/settings.json` under `pluginConfigs`:
 
@@ -88,10 +119,12 @@ Set these in `/config` (the `trips` rows), or in `~/.claude/settings.json` under
 { "pluginConfigs": { "trips": { "options": { "journalDir": "~/notes/trips-journal", "actOnOtherSessions": false } } } }
 ```
 
-- `journalDir`: where the journal keeps its files. Default `~/.claude/trips-journal`. A leading `~` is your home folder.
-- `actOnOtherSessions`: show Reply and Done on trips that wait on you. Default off.
+| Setting | What it does | Default |
+|---|---|---|
+| `journalDir` | Where the journal keeps its files. A leading `~` is your home folder. | `~/.claude/trips-journal` |
+| `actOnOtherSessions` | Show Reply and Done on trips that wait on you. | off |
 
-## Uninstall
+### Uninstall
 
 ```bash
 claude plugin uninstall trips
@@ -99,7 +132,11 @@ claude plugin uninstall trips
 
 The journal stays where it is. Delete it yourself if you want it gone: `rm -rf ~/.claude/trips-journal` (or your `journalDir`).
 
-## How it works
+## <img src="assets/glyph-how.svg" width="24" height="24" alt=""> How it works
+
+<p align="center">
+  <img src="assets/rail-map.svg" width="100%" alt="Diagram: the Platform above now, the rail of the last 24 hours, then a fork into the Sidings (24 hours to 7 days) and the Depot (over 7 days, archived or parked).">
+</p>
 
 ### What goes where
 
@@ -110,19 +147,23 @@ The journal stays where it is. Delete it yourself if you want it gone: `rm -rf ~
 | Sidings | 24 h to 7 days | Closed by default. Grouped by folder, 30 rows at a time with "+N more". |
 | Depot | Over 7 days, or archived in the app | Closed by default. Grouped by folder, newest 30 only. |
 
-In the Sidings and the Depot, folders run by their newest session, and sessions run newest first inside each folder. New activity moves a session back to the rail. The pane refreshes every 5 seconds and after each turn of the current session. The last scan is kept in the mod's store, so the pane in a session you switch to draws at once. `/trips` or the eye on the pill reopens the pane.
+- In the Sidings and the Depot, folders run by their newest session, and sessions run newest first inside each folder.
+- New activity moves a session back to the rail.
+- The pane refreshes every 5 seconds and after each turn of the current session.
+- The last scan is kept in the mod's store, so the pane in a session you switch to draws at once.
+- `/trips` or the eye on the pill reopens the pane.
 
 ### Each row
 
-- Signal lamp: amber for blocked, a teal ring for review ready, a grey ring for completed, a pulsing dot while a turn runs. Without an answer from the host, a dot for activity in the last 2 minutes.
-- Line colour: the sidebar group's place in the sidebar picks one of 5 hues. A session with no group takes its folder's hue.
-- Line 2: on a blocked row the ask after "Needs you:", else the last turn's recap, else your last prompt.
-- Chips: group (or folder), branch, and PR chips that open the PR.
-- Fuel gauge on the current session's row: the context fill from `$.session.usage()`. At 80 percent it turns amber and says to hand off before compaction.
+- **Signal lamp:** amber for blocked, a teal ring for review ready, a grey ring for completed, a pulsing dot while a turn runs. Without an answer from the host, a dot for activity in the last 2 minutes.
+- **Line colour:** the sidebar group's place in the sidebar picks one of 5 hues. A session with no group takes its folder's hue.
+- **Line 2:** on a blocked row the ask after "Needs you:", else the last turn's recap, else your last prompt.
+- **Chips:** group (or folder), branch, and PR chips that open the PR.
+- **Fuel gauge** on the current session's row: the context fill from `$.session.usage()`. At 80 percent it turns amber and says to hand off before compaction.
 
 ### The pill
 
-The band above the prompt shows the tram mark, `⏳ N` (amber above 0) and the eye. It draws beside the pill of any other mod in the band, in one row that never wraps. It hides only while a survey holds the band.
+The band above the prompt shows the tram mark, an hourglass with the count `N` (amber above 0) and the eye. It draws beside the pill of any other mod in the band, in one row that never wraps. It hides only while a survey holds the band.
 
 ### Park in the Depot
 
@@ -138,7 +179,8 @@ Hover a row's title for the eye (open) and the archive box (park). Parking is Tr
 
 Off by default. With `actOnOtherSessions` on, every blocked row that is not the current session shows Reply, Done and Open. Reply goes through the host's `send_message`, else `$.session.send`. Done calls the host's `mark_completed` and keeps a Done mark in Trips until the session asks again.
 
-### Data sources
+<details>
+<summary><b>Data sources</b></summary>
 
 - Desktop session records, read only: `~/Library/Application Support/Claude/claude-code-sessions/<account>/<org>/local_<id>.json` (title, folder, times, archive flag, the app's turn summary, PRs, branch).
 - Sidebar groups, read only: `claude_desktop_config.json` in the same folder.
@@ -146,7 +188,10 @@ Off by default. With `actOnOtherSessions` on, every blocked row that is not the 
 - Running state: `$.mcp.call('ccd_session_mgmt', 'list_sessions')` when the host offers it.
 - The scanner reaches back 30 days and skips sessions with no desktop record (headless runs).
 
-### The journal
+</details>
+
+<details>
+<summary><b>The journal</b></summary>
 
 - **Entry**: `{ at, sessionId, label, done, next }`. `label` is the session or project in at most 4 words. `done` is one past-tense sentence that names the concrete thing finished. `next` is one short imperative sentence, or empty.
 - **Hourly**: a tick every 5 minutes acts when the current hour has no entry yet. One Haiku call turns every session touched since the last run into one entry, as a JSON array. The prompt carries each session's wrap-up, turn report, status detail, recap, last prompt and ask, read from the desktop record, plus today's last 6 entries. No tick runs where nothing draws, such as a plain `claude -p` run.
@@ -156,20 +201,28 @@ Off by default. With `actOnOtherSessions` on, every blocked row that is not the 
 - **Storage**: local JSON in the journal folder: `days/YYYY-MM-DD.json`, `weeks/YYYY-Www.json`, `months/YYYY-MM.json`, `years/YYYY.json`, and `start.json` (setup's start mark). Each write goes to a temporary file, then a rename. A day file that does not parse is moved aside, never overwritten.
 - **One writer**: every open session loads the mod, so a tick takes `lease.json` (made with `O_EXCL`, 10 minutes, renewed before each model call) under `lease.lock` before it writes. A second session finds the lease and skips. After an error the ticks back off 5, 10, 20, 40, then 60 minutes.
 
-### Setup (the backfill)
+</details>
+
+<details>
+<summary><b>Setup (the backfill)</b></summary>
 
 - `/trips setup <range>` takes the same lease as the hourly tick, so the two never race. A busy lease means it writes nothing and says to try again.
 - The transcript reader (`hooks/backfill-scan.ts`, run as `python3 -I -c`) counts a session when the desktop app has a record of it or when it started in an interactive terminal. Headless and SDK runs stay out. It bisects each large transcript to the first line of the range and stops past it, so a 7-day scan takes a few seconds. It scans 7 days per run to keep its output small.
 - Per day, each session's turns split into work blocks at a 2 hour gap. The 24 busiest blocks go to one Haiku call, with the first and last turns of each block (your prompt and the agent's answer, cut short). The reply passes the same line checks and fallbacks as the hourly path. Then one call closes the day.
 - Days with no turns are quiet: no call and no file. After the days, the rollups that came due are written as the tick writes them. Weeks or months the journal already summed up are kept as they are.
 
-### Code
+</details>
+
+<details>
+<summary><b>Code</b></summary>
 
 - `hooks/register.tsx`: the pane, the pill, the 5 second scan, the commands.
 - `hooks/journal.ts`: prompts, line checks, dates, the hourly tick and the rollups. `hooks/journal-store.ts`: the Python store.
 - `hooks/backfill.ts`: `/trips setup`. `hooks/backfill-scan.ts`: the transcript reader.
 - `hooks/scan.ts`: the pane's scanner. `hooks/platform.ts`, `groups.ts`, `nudge.ts`, `search.ts`, `tide.ts`, `park.ts`, `band.ts`: the pane's rules. `hooks/rail.ts` and `hooks/grid.ts`: the dark tokens, hues, the 4 px grid and the small SVGs.
 - Tests: `hooks/*.test.ts(x)`, over the in-memory engine, store and model in `hooks/world.ts` and `hooks/fixture.ts`. No test reaches a real session, a real file or a real model.
+
+</details>
 
 ### Checks
 
