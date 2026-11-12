@@ -4,7 +4,8 @@
 
 <p align="center">
   <b>A Claude Code mod for people who run many sessions at once.</b><br>
-  <code>trips@prometheons</code> · MIT · built and tested on Claude Code 2.1.321
+  <code>trips@prometheons</code> · MIT · built and tested on Claude Code 2.1.321<br>
+  Created by <a href="https://github.com/vanRaco">Andrei B.B. (@vanRaco)</a>
 </p>
 
 <p align="center">
@@ -246,3 +247,7 @@ For type checks, `tsc -p .` works where Claude Code has laid its types into `.cl
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Creator
+
+Trips was created by [Andrei B.B.](https://github.com/vanRaco) ([@vanRaco](https://github.com/vanRaco)) at [Prometheons](https://github.com/prometheons-labs).
